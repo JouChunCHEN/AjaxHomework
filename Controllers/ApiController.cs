@@ -57,5 +57,17 @@ namespace AjaxDemo.Controllers
 
             return Content("新增成功!");
         }
+
+        public IActionResult CheckAccount(string name)
+        {
+            if(_context.Members.Where(x=>x.Name==name).Count() >0)
+            {
+                return Content("此會員名稱已存在");
+            }
+            else
+            {
+                return Content("");
+            }
+        }
     }
 }

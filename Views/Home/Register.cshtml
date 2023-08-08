@@ -11,6 +11,7 @@
             <div class="mb-3">
                 <label for="userName" class="form-label">User Name:</label>
                 <input type="text" class="form-control" id="userName" name="Name">
+                <div id="nameValidation" class="alert alert-warning"></div>
             </div>
             <div class="mb-3">
                 <label for="userEmail" class="form-label">User Email:</label>
@@ -31,6 +32,14 @@
     <div class="col-3"></div>
 </div>
 
+@section Styles{
+    <style>
+        #nameValidation{
+            display:none;
+        }
+    </style>
+}
+
 @section Scripts{
     <script>
         
@@ -38,8 +47,35 @@
         const age = document.querySelector('#userAge');
         const btn = document.querySelector('#btnSubmit');
         const div = document.querySelector('#divShow');
+        const divMessage = document.querySelector('#nameValidation');
 
         const xhr = new XMLHttpRequest();
+
+        // 檢查帳號是否存在
+        // input事件 blur=>結束編輯 ; focus=>開始編輯
+        name.addEventListener('blur', () => {
+            xhr.open("POST", "/Api/CheckAccount");
+            xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            xhr.send(`name=${name.value}`);
+
+            xhr.addEventListener("load", function () {
+                const data = xhr.responseText;
+                if(data==""){
+                    divMessage.innerHTML = null;
+                    divMessage.style.display = "none";
+                }
+                else{
+                    divMessage.innerHTML = data;
+                    divMessage.style.display = "flex";
+                }
+            })
+        })
+
+        name.addEventListener('focus', () => {
+            if (divMessage.innerHTML==null){
+                divMessage.style.display = "none";
+            }
+        })
 
         btn.addEventListener('click', event => {
             event.preventDefault(); //防止預設行為的發生
