@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "First";
+}
+
+<h1>First</h1>
+
+<button id="button1" class="btn btn-info">Click</button><br />
+<button id="button2" class="btn btn-primary">Click Ajax</button> 
+<button id="button3" class="btn btn-danger">Cancel</button>
+<img src="~/images/Rocket.gif" id="loading" />
+<div id="div1" class="alert alert-info"></div>
+
+@section Styles{
+    <style>
+        #loading{
+            display: none;
+        }
+     </style>
+}
+
+@section Scripts{
+    <script>
+        const btn = document.querySelector('#button2');
+        const img = document.querySelector('#loading');
+        const div = document.querySelector('#div1');
+
+        $('#button1').on('click', function(){
+            document.querySelector('#div1').innerHTML = "Button Click";
+        })
+
+        //const btn = document.querySelector('#button1');
+        //const div = document.querySelector('#div1');
+
+        //btn.addEventListener('click',()=>{
+        //div.innerHTML="Button Click";
+        //})
+
+         //步驟一 建立Ajax物件
+        const xhr = new XMLHttpRequest();
+
+        // Ajax GET練習
+        $('#button2').on('click', function () {
+            //步驟二 對伺服器發出要求(Request)
+            xhr.open("GET","/Api/Index");
+            xhr.timeout = 2000; //設定逾時時間(毫秒)
+            xhr.send();
+
+            //步驟三 接收伺服器回傳的資料
+            xhr.addEventListener("load",function(){
+                const data = xhr.responseText;
+                //步驟四 讀資料 JSON/ XML
+                //步驟五 顯示資料
+                div1.innerHTML += `<h3>${data}</h3>`;
+            })
+        })
+
+        // Ajax開始事件：增加讀取提示
+       xhr.addEventListener("loadstart",()=>{
+                btn.textContent = "讀取中...";
+                btn.setAttribute('disabled', 'disabled');
+                img.style.display = "inline";
+            div.innerHTML = `<h3>Ajax開始</h3>`;
+        })
+        // Ajax結束事件：移除讀取提示
+        xhr.addEventListener("loadend", () => {
+            btn.textContent = "Click Ajax";
+            btn.removeAttribute('disabled');
+            img.style.display = "none";
+            div.innerHTML += `<h3>Ajax結束</h3>`;
+        })
+
+        // 逾時事件
+        xhr.addEventListener("timeout",()=>{
+            div.innerHTML += `<h3>伺服器忙碌中，請稍後重試</h3>`;
+        })
+
+        // 強制停止Ajax
+        $('#button3').on('click', function () {
+            xhr.abort();
+        })
+
+        //停止Ajax後觸發提示
+        xhr.addEventListener("abort",()=>{
+            div.innerHTML += `<h3>您停止了程式的執行</h3>`;
+        })
+
+    </script>
+}
+

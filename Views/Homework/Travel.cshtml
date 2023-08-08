@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Travel";
+}
+
+<h1>Travel</h1>
+
+<div class="container-fluid">
+    <div class="row d-flex" id="divTravel">
+    </div>
+</div>
+@section Styles{
+
+}
+
+@section Scripts{
+    <script src="~/datas/travel.js"></script>
+    <script>
+        const div = document.querySelector('#divTravel');
+        let x="";
+        const datas = spots.CommonFormat.Section.map(spot => {
+            let image = null;
+            if (spot.file.img.length >0) {
+                image = spot.file.img[0];
+            }
+            else{
+                image = spot.file.img;
+            }
+            let url = spot.xurl;
+            if (url == null) {
+                url = "#";
+            }
+
+            return (`
+                                    <div class="card  m-2" style="width: 18rem;">
+                                 <img src="${image.text}" class="card-img-top"/>
+                                 <div class="card-body">
+                                            <h5 class="card-title">${spot.stitle}</h5>
+                                            <p class="card-text">${spot.xbody}</p>
+                                            <a href = "${url}" class="btn btn-primary" >查看更多</a>
+                                  </div>
+                              </div>
+                           `);
+        });
+
+       div.innerHTML=datas.join("");
+    </script>
+}

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form name="userInfo" action="~/Api/getDemo" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="mb-3">
+                <label for="userName" class="form-label">User Name:</label>
+                <input type="text" class="form-control" id="userName" name="Name">
+            </div>
+            <div class="mb-3">
+                <label for="userEmail" class="form-label">User Email:</label>
+                <input type="email" class="form-control" id="userEmail" name="Email">
+            </div>
+            <div class="mb-3">
+                <label for="userAge" class="form-label">User Age:</label>
+                <input type="number" class="form-control" id="userAge" name="Age">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Photo:</label>
+                <input class="form-control" type="file" id="formFile" name="file">
+            </div>
+            <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+        </form>    
+        <div id="divShow" class="alert alert-info"></div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+@section Scripts{
+    <script>
+        
+        const name =document.querySelector('#userName');
+        const age = document.querySelector('#userAge');
+        const btn = document.querySelector('#btnSubmit');
+        const div = document.querySelector('#divShow');
+
+        const xhr = new XMLHttpRequest();
+
+        btn.addEventListener('click', event => {
+            event.preventDefault(); //防止預設行為的發生
+
+            // 透過 Ajax POST 傳送資料到Server端
+            //// 設定傳輸方法為POST
+            //xhr.open("POST", "/Api/getDemo");
+            //// 設定傳輸資料的content-type
+            //xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            //// 將傳送的資料放進send()
+            //xhr.send(`name=${name.value}&age=${age.value}`);
+
+            // 改寫為FormData傳輸
+            // 建立FormData物件
+            const formData = new FormData(document.userInfo) //form的name，或用document.querySelector('#id')
+            //xhr.open("POST", "/Api/getDemo");
+            xhr.open("POST", "/Api/Register");
+            // 將傳送的資料放進send()
+            xhr.send(formData);
+
+            xhr.addEventListener("load", function () {
+                const data = xhr.responseText;
+                div.innerHTML = `<h3>${data}</h3>`;
+            })
+        })
+
+    </script>
+}

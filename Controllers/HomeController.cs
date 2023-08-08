@@ -18,6 +18,20 @@ namespace AjaxDemo.Controllers
             return View();
         }
 
+        public IActionResult First()
+        {
+            return View();
+        }
+        public IActionResult GetDemo()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

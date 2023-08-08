@@ -1,7 +1,13 @@
+using AjaxDemo.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// 針對DemoContext進行相依性注入的設定(並在 appsettings.json 中設定ConnectionString)
+builder.Services.AddDbContext<DemoContext>(
+    options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DemoConnection")));
 
 var app = builder.Build();
 

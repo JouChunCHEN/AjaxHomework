@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Jquery";
+}
+
+<h1>Jquery</h1>
+<table id="empTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年資</td>
+            <td>薪水</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section Styles{
+
+}
+
+@section Scripts{
+    <script>
+        const emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+
+        // 顯示JSON格式中的資料
+        const datas = emp.employees.map(employee => {
+            // destructing 物件解構賦值
+            const { name, workYears, salary } = employee;
+            return (
+                `
+                            <tr>
+                                <td>${name}</td>
+                                <td>${workYears}</td>
+                                <td>${salary}</td>
+                            </tr>
+                             `
+            )
+        })
+
+        $('#empTable>tbody').html(datas.join(""));
+    </script>
+}

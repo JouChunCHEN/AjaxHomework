@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\AjaxDemo\\AjaxDemo.csproj": {}
+    "C:\\AJAX\\AjaxDemo\\AjaxDemo.csproj": {}
   },
   "projects": {
-    "C:\\AjaxDemo\\AjaxDemo.csproj": {
+    "C:\\AJAX\\AjaxDemo\\AjaxDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\AjaxDemo\\AjaxDemo.csproj",
+        "projectUniqueName": "C:\\AJAX\\AjaxDemo\\AjaxDemo.csproj",
         "projectName": "AjaxDemo",
-        "projectPath": "C:\\AjaxDemo\\AjaxDemo.csproj",
+        "projectPath": "C:\\AJAX\\AjaxDemo\\AjaxDemo.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\AjaxDemo\\obj\\",
+        "outputPath": "C:\\AJAX\\AjaxDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,22 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.15, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

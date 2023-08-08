@@ -6,6 +6,16 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<table id="empTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年資</td>
+            <td>薪水</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
 @section Styles{
     <style>
@@ -22,6 +32,37 @@
         }).on('mouseout', function () {
             $(this).css('color', 'black');
         })
+
+        const emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+        // JSON讀取練習
+        for (let i = 0; i < emp.employees.length; i++) {
+            console.log(emp.employees[i].name);
+            console.log(emp.employees[i].workYears);
+            console.log(emp.employees[i].salary);
+        }
+
+        // 顯示JSON格式中的資料
+        const datas = emp.employees.map(employee=>{
+            // destructing 物件解構賦值
+            const { name, workYears, salary } = employee;
+            return (
+            `
+            <tr>
+                <td>${name}</td>
+                <td>${workYears}</td>
+                <td>${salary}</td>
+            </tr>
+             `
+            )
+        })
+
+        document.querySelector('#empTable>tbody').innerHTML = datas.join("");
     </script>
     
 }

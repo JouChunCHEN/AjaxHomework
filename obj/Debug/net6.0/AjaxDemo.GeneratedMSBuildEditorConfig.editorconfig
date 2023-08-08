@@ -9,37 +9,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AjaxDemo
 build_property.RootNamespace = AjaxDemo
-build_property.ProjectDir = C:\AjaxDemo\
+build_property.ProjectDir = C:\AJAX\AjaxDemo\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\AjaxDemo
+build_property.MSBuildProjectDirectory = C:\AJAX\AjaxDemo
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/AjaxDemo/Views/Home/Index.cshtml]
+[C:/AJAX/AjaxDemo/Views/Homework/Jquery.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZXdvcmtcSnF1ZXJ5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Homework/Travel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZXdvcmtcVHJhdmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Home/First.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGaXJzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Home/GetDemo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHZXREZW1vLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/Home/Privacy.cshtml]
+[C:/AJAX/AjaxDemo/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/Shared/Error.cshtml]
+[C:/AJAX/AjaxDemo/Views/Home/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Members/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Members/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Members/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Members/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Members/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtYmVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AJAX/AjaxDemo/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/AJAX/AjaxDemo/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/_ViewImports.cshtml]
+[C:/AJAX/AjaxDemo/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/_ViewStart.cshtml]
+[C:/AJAX/AjaxDemo/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/AjaxDemo/Views/Shared/_Layout.cshtml]
+[C:/AJAX/AjaxDemo/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-l0ot17ta9e
