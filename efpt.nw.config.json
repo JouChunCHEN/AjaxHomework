@@ -1,13 +1,13 @@
 ﻿{
    "CodeGenerationMode": 2,
-   "ContextClassName": "DemoContext",
+   "ContextClassName": "NWContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
    "IncludeConnectionString": true,
    "ModelNamespace": null,
    "OutputContextPath": null,
-   "OutputPath": "Models",
+   "OutputPath": "NWModels",
    "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "AjaxDemo",
    "Schemas": null,
@@ -16,15 +16,11 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[Address]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Members]",
+         "Name": "[dbo].[Products]",
          "ObjectType": 0
       }
    ],
-   "UiHint": "desktop-rae7e6c.Demo.dbo",
+   "UiHint": "desktop-rae7e6c.Northwind.dbo",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,

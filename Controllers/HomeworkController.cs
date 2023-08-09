@@ -22,5 +22,10 @@ namespace AjaxDemo.Controllers
         {
             return View();
         }
+
+        public IActionResult AutoComplete()
+        {
+            return View();
+        }
     }
 }

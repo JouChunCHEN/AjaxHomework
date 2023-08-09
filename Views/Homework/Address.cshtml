@@ -27,49 +27,41 @@
         const roadSelect = document.querySelector('#roadSelect');
         const div = document.querySelector('#divShow');
 
-        //async function loadData() {
-        //    let response = await fetch('@Url.Action("City", "Api")');
-        //    let datas = await response.json();
-        //    const cities = datas.map(city => `<option value="${city}"> ${city} </option>`);
-        //    citySelect.innerHTML = cities.join("");
-
-        //    response = await fetch(`@Url.Action("District","Api")?city=${citySelect.value}`);
-        //    datas = await response.json();
-        //    const districts = datas.map(district => `<option value="${district}">${district}</option>`);
-        //    districtSelect.innerHTML = districts.join("");
-
-        //    response = await fetch(`@Url.Action("Road","Api")?siteId=${districtSelect.value}`);
-        //    datas = await response.json();
-        //    const roads = datas.map(road => `<option value="${road}">${road}</option>`);
-        //    roadSelect.innerHTML = roads.join("");
-
-        //    div.textContent = `${districtSelect.value}${roadSelect.value}`;
-        //}
-        //loadData();
+        loadCity();
 
         async function loadCity() {
-            let response = await fetch('@Url.Action("City", "Api")');
-            let datas = await response.json();
+            const response = await fetch('@Url.Action("City", "Api")');
+            const datas = await response.json();
             const cities = datas.map(city => `<option value="${city}"> ${city} </option>`);
-            citySelect.innerHTML = cities.join("");}
+            citySelect.innerHTML = cities.join("");
 
-        async function loadDistrict(){
-            let response = await fetch(`@Url.Action("District","Api")?city=${citySelect.value}`);
-            let datas = await response.json();
-            const districts = datas.map(district => `<option value="${district}">${district}</option>`);
-            districtSelect.innerHTML = districts.join("");
+            loadDistrict();
         }
 
+        async function loadDistrict() {
+            const response = await fetch(`@Url.Action("District","Api")?city=${citySelect.value}`);
+            const datas = await response.json();
+            const districts = datas.map(district => `<option value="${district}">${district}</option>`);
+            districtSelect.innerHTML = districts.join("");
 
-            loadCity();
-            loadDistrict();
+            loadRoad();
+        }
+
+        async function loadRoad(){
+            const response = await fetch(`@Url.Action("Road","Api")?siteId=${districtSelect.value}`);
+            const datas = await response.json();
+            const roads = datas.map(road => `<option value="${road}">${road}</option>`);
+            roadSelect.innerHTML = roads.join("");
+
+            div.textContent = `${districtSelect.value}${roadSelect.value}`;
+        }
 
         citySelect.addEventListener('change', () => {
             loadDistrict();
         })
 
         districtSelect.addEventListener('change', () => {
-
+            loadRoad();
         })
 
         roadSelect.addEventListener('change', () => {

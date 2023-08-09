@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "AutoComplete";
+}
+
+<h1>AutoComplete</h1>
+
+<form>
+    <input type="text" name="txtProductName" id="txtProductName" />
+    <div >
+        <ul class="list-group" id ="result">
+        </ul>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        const txtName = document.querySelector('#txtProductName');
+
+
+        txtName.addEventListener('input',()=>{
+            keywordMatch();
+        })
+
+        async function keywordMatch(){
+            const response = await fetch(`@Url.Action("autoComplete","Api")?keyword=${txtName.value}`)
+            const datas = await response.json();
+            if(datas != null){
+                const products = datas.map(prod => `<li class="list-group-item" id="test">${prod}</li>`);
+            document.querySelector('#result').innerHTML= products.join("");
+            }
+        }
+
+    </script>
+}

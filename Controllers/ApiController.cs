@@ -1,4 +1,5 @@
 ﻿using AjaxDemo.Models;
+using AjaxDemo.NWModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -73,6 +74,18 @@ namespace AjaxDemo.Controllers
                 return Content("");
             }
         }
+
+        public IActionResult autoComplete(string? keyword)
+        {
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return Json(null);
+            }
+
+            NWContext db = new NWContext();
+            var products = db.Products.Where(x=>x.ProductName.ToUpper().StartsWith(keyword.ToUpper())).Select(x=>x.ProductName);
+                return Json(products);
+         }
 
         public IActionResult getImageById(int id=1)
         {
