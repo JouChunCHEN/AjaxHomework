@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Fetch";
+}
+
+<h1>Fetch</h1>
+<h2 id="h2"></h2>
+<ul id="list"></ul>
+<img id="img" />
+
+@section Scripts{
+    <script>
+
+        console.log(fetch('@Url.Action("Fetch","Api")')) //fetch() 直接回傳一個promise物件
+
+        fetch('@Url.Action("Fetch","Api")').then(response=>{
+            console.log(response); //.then()得到的response物件中有不同的資訊
+            console.log(response.url);
+            console.log(response.status);
+            return response.text() 
+            //依照資料格式用不同的指令取出，此時又會得到一個promise物件，再下一次then取出資料
+        }).then(data=>{
+            console.log(data);
+            document.querySelector('#h2').innerHTML =data;
+        });
+        
+        //透過Fetch接收json資料
+        fetch('@Url.Action("City", "Api")')
+        .then(response=> response.json())
+        .then(datas=>{
+                const list = datas.map(city => `<li>${city}</li>`);
+                $('#list').html(list.join(""));
+        })
+
+        //改寫為async await
+        async function getCity(){
+            const response = await fetch('@Url.Action("City", "Api")');
+            const datas = await response.json();
+            const list = datas.map(city => `<li>${city}</li>`);
+            $('#list').html(list.join(""));
+        }
+        getCity();
+
+        //透過Fetch接收二進位資料(圖檔)
+        fetch('@Url.Action("getImageById", "Api", new{id=1})')
+        .then(response=>response.blob())
+        .then(datas => document.querySelector('#img').src=URL.createObjectURL(datas));
+
+       //改寫為async await
+       async function getImage(){
+            const response = await fetch('@Url.Action("getImageById", "Api", new{id=1})');
+            const datas = await response.blob();
+            document.querySelector('#img').src = URL.createObjectURL(datas);
+       }
+        getImage();
+
+    </script>
+}
+

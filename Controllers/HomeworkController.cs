@@ -17,5 +17,10 @@ namespace AjaxDemo.Controllers
         {
             return View();
         }
+
+        public IActionResult Address()
+        {
+            return View();
+        }
     }
 }

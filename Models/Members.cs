@@ -3,19 +3,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace AjaxDemo.Models;
-
-public partial class Members
+namespace AjaxDemo.Models
 {
-    public int MemberId { get; set; }
-
-    public string Name { get; set; }
-
-    public string Email { get; set; }
-
-    public int? Age { get; set; }
-
-    public string FileName { get; set; }
-
-    public byte[] FileData { get; set; }
+    public partial class Members
+    {
+        public int MemberId { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int? Age { get; set; }
+        public string FileName { get; set; }
+        public byte[] FileData { get; set; }
+    }
 }

@@ -39,10 +39,10 @@
          //步驟一 建立Ajax物件
         const xhr = new XMLHttpRequest();
 
-        // Ajax GET練習
+          // Ajax GET練習
         $('#button2').on('click', function () {
             //步驟二 對伺服器發出要求(Request)
-            xhr.open("GET","/Api/Index");
+            xhr.open("GET", '@Url.Action("Index","api")');
             xhr.timeout = 2000; //設定逾時時間(毫秒)
             xhr.send();
 

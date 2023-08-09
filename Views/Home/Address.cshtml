@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+<div class="form-floating">
+    <select class="form-select" id="citySelect">
+    </select>
+    <label for="citySelect">縣市</label>
+</div>
+<div class="form-floating">
+    <select class="form-select" id="districtSelect">
+    </select>
+    <label for="citySelect">區鄉鎮</label>
+</div>
+<div class="form-floating">
+    <select class="form-select" id="roadSelect">
+    </select>
+    <label for="citySelect">路</label>
+</div>
+<div id="divShow" class="alert alert-info"></div>
+
+@section Scripts{
+    <script>
+        const citySelect = document.querySelector('#citySelect');
+        const districtSelect = document.querySelector('#districtSelect');
+        const roadSelect = document.querySelector('#roadSelect');
+        const div= document.querySelector('#divShow');
+
+        function loadCity(){
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "@Url.Action("City","Api")");
+            xhr.send();
+
+            xhr.addEventListener('load', ()=>{
+                const datas = JSON.parse(xhr.responseText);
+                const cities = datas.map(city => `<option value="${city}">${city}</option>`);
+
+                citySelect.innerHTML = cities.join("");
+                // 確保city讀到資料後再跑district的資料
+                loadDistrict();
+            })
+        }
+
+        function loadDistrict() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `@Url.Action("District","Api")?city=${citySelect.value}`);
+            xhr.send();
+
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                const districts = datas.map(district => `<option value="${district}">${district}</option>`);
+
+                districtSelect.innerHTML = districts.join("");
+                // 確保disrict讀到資料後再跑road的資料
+                loadRoad();
+            })
+        }
+
+        function loadRoad() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `@Url.Action("Road","Api")?siteId=${districtSelect.value}`);
+            xhr.send();
+
+            xhr.addEventListener('load', () => {
+                const datas = JSON.parse(xhr.responseText);
+                const roads = datas.map(road => `<option value="${road}">${road}</option>`);
+
+                roadSelect.innerHTML = roads.join("");
+                // 第一次讀完所有資料時顯示出地址
+                showAddress()
+            })
+        }
+
+        function showAddress(){
+            div.textContent = `${districtSelect.value}${roadSelect.value}`;
+        }
+
+        loadCity();
+
+        citySelect.addEventListener('change', ()=>{
+            loadDistrict();
+        })
+
+        districtSelect.addEventListener('change', ()=>{
+            loadRoad();
+        })
+
+        roadSelect.addEventListener('change', () => {
+            showAddress()
+        })
+    </script>
+    
+}

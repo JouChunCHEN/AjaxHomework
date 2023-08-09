@@ -17,14 +17,17 @@
 
 @section Scripts{
     <script>
+        const name = "Jack";
+        const age = 10;
+
 
         //步驟一 建立Ajax物件
         const xhr = new XMLHttpRequest();
         
-        btn.addEventListener('click',()=>{
         //步驟二 對伺服器發出要求(Request)
         //xhr.open("GET", "/Api/Index",false);     false 表示改成同步的執行模式
-        xhr.open("GET", "/Api/getDemo?name=Jack&age=10"); 
+        //傳遞的參數不須經過Sever端處理路徑，放在最後面，如要塞入變數則用`${}`包起來
+        xhr.open("GET", `@Url.Action("getDemo","Api")?name=${name}&age=${age}`); 
         xhr.send();
 
         //步驟三 接收伺服器回傳的資料
@@ -35,7 +38,6 @@
                 //要找到想要控制的標籤
                 document.querySelector('#div1').innerHTML = `<h3>${data}</h3>`;
          })
-        })
 
     </script>
 }

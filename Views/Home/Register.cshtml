@@ -25,6 +25,9 @@
                 <label for="formFile" class="form-label">Photo:</label>
                 <input class="form-control" type="file" id="formFile" name="file">
             </div>
+            <div class="mb-3">
+                <img id="imgShow" class="w-100"/>
+            </div>
             <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
         </form>    
         <div id="divShow" class="alert alert-info"></div>
@@ -54,7 +57,7 @@
         // 檢查帳號是否存在
         // input事件 blur=>結束編輯 ; focus=>開始編輯
         name.addEventListener('blur', () => {
-            xhr.open("POST", "/Api/CheckAccount");
+            xhr.open("POST", "@Url.Action("CheckAccount","Api")");
             xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
             xhr.send(`name=${name.value}`);
 
@@ -89,17 +92,48 @@
             //xhr.send(`name=${name.value}&age=${age.value}`);
 
             // 改寫為FormData傳輸
-            // 建立FormData物件
-            const formData = new FormData(document.userInfo) //form的name，或用document.querySelector('#id')
-            //xhr.open("POST", "/Api/getDemo");
-            xhr.open("POST", "/Api/Register");
-            // 將傳送的資料放進send()
-            xhr.send(formData);
+            //// 建立FormData物件
+            //const formData = new FormData(document.userInfo) //form的name，或用document.querySelector('#id')
+            ////xhr.open("POST", "/Api/getDemo");
+            //xhr.open("POST", "@Url.Action("Register","Api")");
+            //// 將傳送的資料放進send()
+            //xhr.send(formData);
 
-            xhr.addEventListener("load", function () {
-                const data = xhr.responseText;
-                div.innerHTML = `<h3>${data}</h3>`;
+            //xhr.addEventListener("load", function () {
+            //    const data = xhr.responseText;
+            //    div.innerHTML = `<h3>${data}</h3>`;
+            //})
+
+            
+            // 建立FormData物件
+            const formData = new FormData(document.userInfo);
+            //改用 fetch 傳送FormData到server端
+            fetch('@Url.Action("Register", "Api")',{
+                body: formData,
+                method: "POST"
+            }).then(response=>{
+                if(response.ok){
+                    alert("新增成功");
+                    location.href="@Url.Action("Index","Members")";
+                }
+                else{
+                    alert("發生錯誤");
+                }
             })
+        })
+
+        //預覽上傳圖片
+        const file = document.querySelector('#formFile');
+        
+        file.addEventListener('change', function(){
+            const reader = new FileReader();
+            if (this.files.length>0){
+                reader.readAsDataURL(this.files[0]);
+            }
+
+            reader.onload = function (e) {
+                document.querySelector('#imgShow').src = e.target.result;
+            };
         })
 
     </script>

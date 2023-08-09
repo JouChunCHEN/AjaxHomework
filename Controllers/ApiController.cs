@@ -20,6 +20,10 @@ namespace AjaxDemo.Controllers
             System.Threading.Thread.Sleep(3000); //強制停止3秒鐘，再往下執行>>測試讀取效果
             return Content("Hello Ajax.");
         }
+        public IActionResult Fetch()
+        {
+            return Content("Hello Fetch.");
+        }
 
         public IActionResult getDemo(ViewModels.CUserViewModel vm)
         {
@@ -68,6 +72,35 @@ namespace AjaxDemo.Controllers
             {
                 return Content("");
             }
+        }
+
+        public IActionResult getImageById(int id=1)
+        {
+            Members? member = _context.Members.Find(id);
+            byte[]? img = member.FileData;
+
+            return File(img, "image/jpeg");
+        }
+
+        //回傳城市的JSON資料
+        public IActionResult City()
+        {
+            var cities = _context.Address.Select(x => x.City).Distinct();
+            return Json(cities);
+        }
+
+        //根據城市名稱，回傳城市的鄉鎮區JSON資料
+        public IActionResult District(string city)
+        {
+            var districts = _context.Address.Where(x=>x.City == city).Select(x => x.SiteId).Distinct();
+            return Json(districts);
+        }
+
+        //根據鄉鎮區名稱，回傳鄉鎮區的路名JSON資料
+        public IActionResult Road(string siteId)
+        {
+            var roads = _context.Address.Where(x => x.SiteId == siteId).Select(x => x.Road).Distinct();
+            return Json(roads);
         }
     }
 }
