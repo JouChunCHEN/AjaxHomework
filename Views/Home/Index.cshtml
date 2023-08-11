@@ -17,6 +17,13 @@
     <tbody></tbody>
 </table>
 
+<!--在主網頁中嵌入Partial View-->
+<div>
+    @Html.Partial("Partial1")
+    <!--由於這種載入方法沒有經過Action，只能呈現靜態內容-->
+    @Html.Partial("Partial2")
+</div>
+
 @section Styles{
     <style>
     p{

@@ -47,6 +47,31 @@ namespace AjaxDemo.Controllers
             return View();
         }
 
+        public IActionResult History()
+        {
+            return View();
+        }
+
+        public IActionResult jQuery()
+        {
+            return View();
+        }
+
+        public IActionResult Partial1()
+        {
+            return PartialView();
+        }
+        public IActionResult Partial2()
+        {
+            ViewBag.MESSAGE = "來自Action的內容";
+            return PartialView();
+        }
+
+        public IActionResult DataTables()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

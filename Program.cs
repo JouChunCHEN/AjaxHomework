@@ -28,6 +28,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Homework}/{action=Address}/{id?}");
+    pattern: "{controller=Home}/{action=jQuery}/{id?}");
 
 app.Run();

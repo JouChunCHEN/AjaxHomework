@@ -73,6 +73,7 @@ namespace AjaxDemo.Controllers
             {
                 return Content("");
             }
+            //改善： 直接用_context.Members.Any(x => x.Name == name) 回傳True / False
         }
 
         public IActionResult autoComplete(string? keyword)

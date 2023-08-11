@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "jQuery";
+}
+
+<h1>jQuery</h1>
+<button id="buttonGet" class="btn btn-primary">get</button>
+<button id="buttonPost" class="btn btn-secondary">post</button>
+<button id="buttonJson" class="btn btn-success">getJson</button>
+<button id="buttonLoad" class="btn btn-info">load</button>
+<button id="buttonAjax" class="btn btn-warning">ajax</button>
+<button id="buttonCors" class="btn btn-danger">cors</button>
+<div class="alert alert-dark mt-3 w-50" role="alert" id="divAlert">
+    <ul></ul>
+</div>
+@section Scripts{
+    <script>
+        $('#buttonGet').click(function () {
+            $.get('@Url.Action("getDemo","Api")',{"name":"Jack", "age":20},function(data){
+                $('#divAlert').text(data)
+            })
+        })
+
+        $('#buttonPost').click(function () {
+            $.post('@Url.Action("getDemo","Api")', { "name": "Kelly", "age": 25 }, function (data) {
+                $('#divAlert').text(data)
+            })
+        })
+
+        $('#buttonJson').click(function () {
+            $.getJSON('@Url.Action("City","Api")', function(datas){
+                
+                //避免在迴圈中使用選擇器
+                const theUI = $('#divAlert>ul');
+                //為避免網頁在迴圈中重複渲染(.append())，先製造一個容器裝載迴圈產生的html
+                const docFrag = $(document.createDocumentFragment()); 
+                $.each(datas, function(i, city){ // 第一個參數為索引值 ; 第二個為value
+                    console.log(city);
+                    //將內容顯示在畫面上
+                    const item = $('<li></li>').text(city); // `<li>${city}</li>`
+                    docFrag.append(item); // += innerHTML
+                })
+                theUI.html(docFrag);
+            })
+        })
+
+        $('#buttonLoad').click(function () {
+            //在特定區塊中讀取Partial View
+            //$('#divAlert').load('@Url.Action("Partial1","Home")')
+            // 透過Partial View + Ajax可以讓網頁讀取到動態內容
+            $('#divAlert').load('@Url.Action("Partial2","Home")')
+        })
+
+        $('#buttonAjax').click(function () {
+           // $.ajax({
+           //     'url': '@Url.Action("getDemo","Api")',
+           //     'type': 'get',
+           //     'data': { "name": "Jack", "age": 20 },
+           //     'success' : function (data) { $('#divAlert').text(data); }
+           //})
+
+           $.ajax({
+                'url': '@Url.Action("City","Api")',
+                'type': 'get',
+                'dataType': 'json'
+           })
+           .done(function(datas){
+               const theUI = $('#divAlert>ul');
+               const docFrag = $(document.createDocumentFragment()); 
+                $.each(datas, function(i, city){ 
+                    console.log(city);
+                    const item = $('<li></li>').text(city);
+                    docFrag.append(item);
+                })
+                    theUI.html(docFrag);
+           })
+        })
+
+        $('#buttonCors').click(function () {
+            // web API 的 Sever需要啟用CORS才能跨網域連線
+            $.getJSON('https://localhost:7071/api/Shippers', function(datas){
+                console.log(datas);
+            })
+        })
+
+    </script>
+}
